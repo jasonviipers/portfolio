@@ -7,7 +7,20 @@ await import("./src/env.js");
 /** @type {import("next").NextConfig} */
 const config = {
     images: {
-        domains: ["aceternity.com"],
+        remotePatterns: [
+            {
+				protocol: "http",
+				hostname: "localhost",
+			},
+			{
+				protocol: "https",
+				hostname: "aceternity.com",
+			},
+            {
+                protocol: "https",
+                hostname: "via.placeholder.com"
+            }
+        ]
         
     },
 };

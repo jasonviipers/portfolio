@@ -5,7 +5,6 @@ import { Leaf, ScanEye, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/moving-border";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { ProductReel } from "@/components/ProductReel";
-import { ImageSlider } from "@/components/ImageSlider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient()
@@ -45,12 +44,10 @@ export default function ShopPage() {
                     </div>
                     <QueryClientProvider
                         client={queryClient}>
-                    <ProductReel title="Featured Products" />
+                        <ProductReel title="Featured Products"
+                            query={{ sort: "asc", limit: 4 }}
+                            href='/products?sort=recent' />
                     </QueryClientProvider>
-                    {/* <ProductReel query={{ sort: 'desc', limit: 4 }}
-                        href='/products?sort=recent'
-                        title='Brand new' /> */}
-
                 </div>
 
                 <div className="mx-auto w-full max-w-screen-xl px-2.5 md:px-20">
@@ -88,7 +85,6 @@ export default function ShopPage() {
                     </motion.section>
                 </div>
             </div>
-
         </div>
     );
 }

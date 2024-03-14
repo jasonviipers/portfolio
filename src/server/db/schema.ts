@@ -114,3 +114,61 @@ export const verificationTokens = createTable(
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 );
+
+// Schema for Product
+export const products = createTable("product", {
+  id: varchar("id", { length: 255 }).notNull().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  price: integer("price").notNull(),
+  category: varchar("category", { length: 255 }).notNull(),
+  product_filesId: varchar("product_filesId", { length: 255 }).notNull(),
+  approvedForSale: varchar("approvedForSale", { length: 255 }),
+  priceId: varchar("priceId", { length: 255 }),
+  stripeId: varchar("stripeId", { length: 255 }),
+  updatedAt: timestamp("updatedAt", { mode: "date" }).notNull(),
+  createdAt: timestamp("createdAt", { mode: "date" }).notNull(),
+});
+
+export const productsRelations = relations(products, ({ one }) => ({
+  product_files: one(product_files, {
+    fields: [products.product_filesId],
+    references: [product_files.id],
+  }),
+}));
+
+// Schema for ProductFile
+export const product_files = createTable("product_file", {
+  id: varchar("id", { length: 255 }).notNull().primaryKey(),
+  updatedAt: timestamp("updatedAt", { mode: "date" }).notNull(),
+  createdAt: timestamp("createdAt", { mode: "date" }).notNull(),
+  url: varchar("url", { length: 255 }),
+  filename: varchar("filename", { length: 255 }),
+  mimeType: varchar("mimeType", { length: 255 }),
+  filesize: integer("filesize"),
+  width: integer("width"),
+  height: integer("height"),
+});
+
+export const product_filesRelations = relations(product_files, ({ one }) => ({}));
+
+// Schema for Media
+export const media = createTable("media", {
+  id: varchar("id", { length: 255 }).notNull().primaryKey(),
+  updatedAt: timestamp("updatedAt", { mode: "date" }).notNull(),
+  createdAt: timestamp("createdAt", { mode: "date" }).notNull(),
+  url: varchar("url", { length: 255 }),
+  filename: varchar("filename", { length: 255 }),
+  mimeType: varchar("mimeType", { length: 255 }),
+  filesize: integer("filesize"),
+  width: integer("width"),
+  height: integer("height"),
+});
+
+export const mediaRelations = relations(media, ({ one }) => ({}));
+
+export const product_images = createTable("product_image", {
+  id: varchar("id", { length: 255 }).notNull().primaryKey(),
+  product_id: varchar("product_id", { length: 255 }).notNull(),
+  image: varchar("image", { length: 255 }),
+});

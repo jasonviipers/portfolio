@@ -3,6 +3,7 @@ import { LINKS } from "@/config";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Cart } from "./cart";
 
 interface HeaderProps {
     className?: string;
@@ -23,7 +24,7 @@ export function Header({ className }: HeaderProps) {
                             className="h-3/4 flex items-center justify-center relative"
                             key={link.hash}
                             initial={{ opacity: 0, y: -100 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            animate={{ opacity: 1, y: 0, x: 0 }}
                         >
                             <Link href={link.hash} className={cn("flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition dark:text-gray-400 dark:hover:text-gray-200",
                                 "!text-gray-950 font-medium dark:!text-gray-100"
@@ -32,6 +33,32 @@ export function Header({ className }: HeaderProps) {
                             </Link>
                         </motion.li>
                     ))}
+                    <Cart items={[
+                        // {
+                        //     id: 1,
+                        //     name: 'Product 1',
+                        //     price: 100,
+                        //     images: [
+                        //         {
+                        //             image: {
+                        //                 url: 'https://via.placeholder.com/150'
+                        //             }
+                        //         }
+                        //     ]
+                        // },
+                        // {
+                        //     id: 2,
+                        //     name: 'Product 2',
+                        //     price: 200,
+                        //     images: [
+                        //         {
+                        //             image: {
+                        //                 url: 'https://via.placeholder.com/150'
+                        //             }
+                        //         }
+                        //     ]
+                        // }
+                    ]} />
                 </ul>
             </nav>
         </header>

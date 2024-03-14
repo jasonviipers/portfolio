@@ -2,25 +2,39 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import {useQuery} from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { TextGenerateEffect } from './ui/text-generate-effect';
 import { ProductListing } from './ProductListing';
+import { TQueryValidator } from '@/lib/query-validator';
+import { Product } from '@/types';
 
 interface ProductReelProps {
     title: string
     subtitle?: string
     href?: string
-    query?: string
+    query: TQueryValidator
 }
 
 export const ProductReel: React.FC<ProductReelProps> = ({ title, subtitle, href, query }) => {
-    const { isLoading, error, data } = useQuery({
+    const { isLoading, error, data: queryResults } = useQuery({
         queryKey: ['repoData'],
         queryFn: async () => {
             const res = await fetch('/api/products');
             return res.json();
         },
     });
+
+    const products = queryResults?.data as Product[];
+
+    let map: Product[] = products || [];
+    if (query.sort) {
+        map = map.sort((a, b) => {
+            if (query.sort === 'asc') {
+                return a.price - b.price;
+            }
+            return b.price - a.price;
+        });
+    }
 
     return (
         <div className='py-12'>
@@ -55,19 +69,12 @@ export const ProductReel: React.FC<ProductReelProps> = ({ title, subtitle, href,
             <div className="relative">
                 <div className='mt-6 flex items-center w-full'>
                     <div className='w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8'>
-                        {/* {
-                            isLoading ? (
-                                Array.from({ length: 4 }, (_, i) => (
-                                    <div key={i} className='w-full'>
-                                        <ProductListing index={i} products={null} />
-                                    </div>
-                                ))
-                            ) : data?.map((products, i) => (
-                                <div key={i} className='w-full'>
-                                    <ProductListing index={i} products={products} />
-                                </div>
-                            ))
-                        } */}
+                        {map.map((products, index) => (
+                            <ProductListing
+                                key={`product-${index}`}
+                                product={products}
+                                index={index} />
+                        ))}
                     </div>
                 </div>
             </div>
