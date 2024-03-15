@@ -1,14 +1,13 @@
 "use client";
+import Link from 'next/link';
+import Image from 'next/image';
 import { ShoppingCart } from 'lucide-react';
-
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { useEffect, useState } from 'react';
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { ScrollArea } from './ui/scroll-area';
 import { CartItem } from './CartItem';
-import { formatPrice } from '@/lib/utils';
-import Link from 'next/link';
+import { cn, formatPrice } from '@/lib/utils';
 import { buttonVariants } from './ui/button';
-import Image from 'next/image';
 
 export const Cart = ({ items }: { items: any[] }) => {
     const itemsCount = items?.length
@@ -21,7 +20,7 @@ export const Cart = ({ items }: { items: any[] }) => {
     const fee = 0;
     const cartTotal = items.reduce((acc, item) => acc + item.price, 0);
     return (
-        <Sheet>
+        <Sheet >
             <SheetTrigger className='group -m-2 flex items-center p-2'>
                 <ShoppingCart aria-hidden
                     className='w-6 h-6 group-hover:scale-105'
@@ -30,7 +29,7 @@ export const Cart = ({ items }: { items: any[] }) => {
                     {isMounted ? itemsCount : 0}
                 </span>
             </SheetTrigger>
-            <SheetContent className='flex w-full flex-col pr-0 sm:max-w-lg'>
+            <SheetContent className={cn('flex w-full flex-col pr-0 sm:max-w-lg')} >
                 <SheetHeader className='space-y-2.5 pr-6'>
                     <SheetTitle>Cart ({itemsCount})</SheetTitle>
                 </SheetHeader>
@@ -72,6 +71,7 @@ export const Cart = ({ items }: { items: any[] }) => {
                                     <Link
                                         href='/cart'
                                         className={buttonVariants({
+                                            
                                             className: 'w-full',
                                         })}>
                                         Continue to Checkout

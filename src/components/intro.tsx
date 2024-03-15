@@ -49,7 +49,7 @@ export const Intro = () => {
                     </Button>
                     <Button
                         borderRadius="1.75rem"
-                        className="group bg-white 
+                        className="group  bg-gray-900/5 text-dark-white 
                         px-7 py-3 flex items-center gap-2 rounded-full 
                         outline-none focus:scale-105 hover:scale-105 
                         active:scale-95 transition borderBlack dark:bg-white/10"
@@ -59,13 +59,13 @@ export const Intro = () => {
 
                     </Button>
 
-                    <Link href="#github"
+                    <Link href="https://github.com/jasonviipers"
                         className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full outline-none focus:scale-[1.1] hover:scale-[1.1] active:scale-95 hover:text-gray-950 transition borderBlack dark:bg-white/10 dark:text-white/60"
                         aria-label="github"
                     >
                         <Github className="opacity-70 group-hover:translate-x-0.5 transition" />
                     </Link>
-                    <Link href="#linkedin"
+                    <Link href="https://www.linkedin.com/in/chatr/"
                         className="bg-white p-4 text-gray-700 flex items-center gap-2 rounded-full outline-none focus:scale-[1.1] hover:scale-[1.1] active:scale-95 hover:text-gray-950 transition borderBlack dark:bg-white/10 dark:text-white/60"
                         aria-label="linkedin"
                     >

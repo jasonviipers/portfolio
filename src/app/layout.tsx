@@ -1,4 +1,5 @@
 import { Toaster } from "react-hot-toast";
+import { SessionProvider } from 'next-auth/react';
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -47,7 +48,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Header />
-            {children}
+            <SessionProvider>{children}</SessionProvider>
             <Footer />
             <aside>
               <Toaster

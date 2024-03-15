@@ -3,6 +3,7 @@ import { Spotlight } from "@/components/ui/Spotlight";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 import { motion } from "framer-motion";
+import { title } from "process";
 
 export default function About() {
     return (
@@ -88,6 +89,18 @@ const frontendAndBackend = [
         title: "Dockers",
         description: "I use Dockers to containerize applications. I am familiar with the latest features of Dockers.",
         link: "https://www.docker.com/"
+    }, {
+        title: "Csharp",
+        description: "I use Csharp to build server-side applications,Gaming applications and desktop applications. I am familiar with the latest features of Csharp.",
+        link: "https://docs.microsoft.com/en-us/dotnet/csharp/"
+    }, {
+        title: "Assembly",
+        description: "I use Assembly to reverse engineer application and fix bugs. I am familiar with the latest features of Assembly.",
+        link: "https://en.wikipedia.org/wiki/Assembly_language"
+    }, {
+        title: "C and C++",
+        description: "I use C and C++ to build system level applications and Gaming applications. I am familiar with the latest features of C and C++.",
+        link: "https://en.wikipedia.org/wiki/C_(programming_language)"
     }
 
 ]
