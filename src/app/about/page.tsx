@@ -3,7 +3,6 @@ import { Spotlight } from "@/components/ui/Spotlight";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 import { motion } from "framer-motion";
-import { title } from "process";
 
 export default function About() {
     return (
@@ -24,7 +23,6 @@ export default function About() {
                     My stack includes React, Next.js, TypeScript, Tailwind CSS, and Node.js. I am also familiar with flutter, React Native and dart.
                     When I'm not coding, I'm probably reading, playing video games, traveling, or learning something new.
                 </motion.p>
-
                 <motion.div
                     initial={{ opacity: 0, y: 100 }}
                     animate={{ opacity: 1, y: 0 }}

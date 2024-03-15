@@ -23,8 +23,8 @@ export const ProductListing: React.FC<ProductListingProps> = ({ index, product }
     }, [index]);
 
     const validImage = product?.images
-        .map(({ image }) => typeof image === 'string' ? image : image.url)
-        .filter(Boolean)[0] as string;
+    .map(({ image }) => typeof image === 'string' ? image : image.url)
+    .filter(Boolean)[0] as string;
 
     if (isVisible && product) {
         return (

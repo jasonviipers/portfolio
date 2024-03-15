@@ -11,10 +11,5 @@ export const LINKS = [
       name: "Shop",
       hash: "/shop",
     },
-    {
-      name: "Contact",
-      hash: "/contact",
-    },
-
   ] as const;
   

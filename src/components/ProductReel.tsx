@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
@@ -17,12 +17,16 @@ interface ProductReelProps {
 
 export const ProductReel: React.FC<ProductReelProps> = ({ title, subtitle, href, query }) => {
     const { isLoading, error, data: queryResults } = useQuery({
-        queryKey: ['repoData'],
+        queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch('/api/products');
+            const res = await fetch('https://fakestoreapi.com/products');
             return res.json();
         },
+        initialData: [],
     });
+
+    if(isLoading) return <div className='text-center'>Loading...</div>;
+    if(error) return <div className='text-center'>Error: {error.message}</div>;
 
     const products = queryResults?.data as Product[];
 
@@ -80,4 +84,4 @@ export const ProductReel: React.FC<ProductReelProps> = ({ title, subtitle, href,
             </div>
         </div>
     );
-}
+};

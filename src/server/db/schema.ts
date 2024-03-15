@@ -4,7 +4,6 @@ import {
   integer,
   pgTableCreator,
   primaryKey,
-  serial,
   text,
   timestamp,
   varchar,
@@ -19,24 +18,6 @@ import { type AdapterAccount } from "next-auth/adapters";
  */
 export const createTable = pgTableCreator((name) => `porfolio_${name}`);
 
-export const posts = createTable(
-  "post",
-  {
-    id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
-    createdById: varchar("createdById", { length: 255 })
-      .notNull()
-      .references(() => users.id),
-    createdAt: timestamp("created_at")
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updatedAt"),
-  },
-  (example) => ({
-    createdByIdIdx: index("createdById_idx").on(example.createdById),
-    nameIndex: index("name_idx").on(example.name),
-  })
-);
 
 export const users = createTable("user", {
   id: varchar("id", { length: 255 }).notNull().primaryKey(),
@@ -114,9 +95,8 @@ export const verificationTokens = createTable(
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 );
-
 // Schema for Product
-export const products = createTable("product", {
+export const product = createTable("product", {
   id: varchar("id", { length: 255 }).notNull().primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
   description: text("description"),
@@ -130,9 +110,9 @@ export const products = createTable("product", {
   createdAt: timestamp("createdAt", { mode: "date" }).notNull(),
 });
 
-export const productsRelations = relations(products, ({ one }) => ({
+export const productsRelations = relations(product, ({ one }) => ({
   product_files: one(product_files, {
-    fields: [products.product_filesId],
+    fields: [product.product_filesId],
     references: [product_files.id],
   }),
 }));

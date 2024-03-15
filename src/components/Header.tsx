@@ -33,7 +33,7 @@ export function Header({ className }: HeaderProps) {
                             </Link>
                         </motion.li>
                     ))}
-                    <Cart items={[
+                    {/* <Cart items={[
                         // {
                         //     id: 1,
                         //     name: 'Product 1',
@@ -58,7 +58,7 @@ export function Header({ className }: HeaderProps) {
                         //         }
                         //     ]
                         // }
-                    ]} />
+                    ]} /> */}
                 </ul>
             </nav>
         </header>

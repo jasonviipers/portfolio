@@ -11,6 +11,7 @@ import "@/styles/globals.css";
 import { Inter as FontSans } from "next/font/google"
 import { ThemeSwitch } from "@/components/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
+import { ShopProvider } from "@/components/ModalProvider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -48,7 +49,11 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Header />
-            <SessionProvider>{children}</SessionProvider>
+            <SessionProvider>
+              <ShopProvider>
+                {children}
+              </ShopProvider>
+            </SessionProvider>
             <Footer />
             <aside>
               <Toaster
